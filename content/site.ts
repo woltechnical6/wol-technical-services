@@ -5,6 +5,24 @@
  */
 export const PLACEHOLDER = "[To be confirmed]" as const;
 
+/**
+ * Public origin the site is served from. Used for every absolute URL Next
+ * emits — og:image, twitter:image, canonical, sitemap, robots — so it must be
+ * a host that actually resolves, or link previews silently break.
+ *
+ *   1. NEXT_PUBLIC_SITE_URL         — set explicitly (e.g. once woltechnical.com is live)
+ *   2. VERCEL_PROJECT_PRODUCTION_URL — injected by Vercel: the *.vercel.app host, or the
+ *                                      custom production domain once one is attached
+ *   3. localhost                     — local dev / local builds
+ */
+function resolveSiteUrl(): string {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (explicit) return explicit.replace(/\/+$/, "");
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (vercel) return `https://${vercel}`;
+  return "http://localhost:3000";
+}
+
 export const site = {
   name: "WOL Technical Services",
   shortName: "WOL",
@@ -12,7 +30,7 @@ export const site = {
   descriptor: "Oil & Gas · Technical Services · Dubai, UAE",
   description:
     "WOL Technical Services is a Dubai-based technical services company supporting oil & gas and industrial facilities with mechanical, piping, welding, electrical and maintenance work.",
-  url: "https://www.woltechnical.com",
+  url: resolveSiteUrl(),
   location: {
     city: "Dubai",
     country: "United Arab Emirates",
