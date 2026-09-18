@@ -260,7 +260,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
       {/* Hero — dark blueprint field, breadcrumb, badge, headline, gold    */}
       {/* rule, dual CTAs, framed site photo, coordinate readout.           */}
       {/* ---------------------------------------------------------------- */}
-      <section className="relative overflow-hidden bg-linear-to-br from-[#0a1330] via-[#101f47] to-[#0d1a3d] py-20 md:py-28">
+      <section className="relative overflow-hidden bg-linear-to-br from-[#0a1330] via-[#101f47] to-[#0d1a3d] pt-[calc(var(--header-h)+2rem)] pb-20 md:pt-28 md:pb-28">
         <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
           <div className="wol-blueprint-grid absolute inset-0" />
           <div className="wol-hero-orb-a absolute -left-24 top-0 size-104 rounded-full bg-cyan-400/20 blur-[110px]" />

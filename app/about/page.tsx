@@ -310,7 +310,7 @@ export default function AboutPage() {
       {/* Hero — dark navy gradient, blueprint grid, centered pill badge,   */}
       {/* bold headline, shimmering gold rule, dual CTAs, discipline line. */}
       {/* ---------------------------------------------------------------- */}
-      <section className="relative overflow-hidden bg-linear-to-br from-[#0a1330] via-[#101f47] to-[#0d1a3d] py-24 md:py-32">
+      <section className="relative overflow-hidden bg-linear-to-br from-[#0a1330] via-[#101f47] to-[#0d1a3d] pt-[calc(var(--header-h)+2.5rem)] pb-24 md:pt-32 md:pb-32">
         <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
           <div className="wol-blueprint-grid absolute inset-0" />
           <div className="wol-hero-orb-a absolute -left-24 top-0 size-104 rounded-full bg-cyan-400/20 blur-[110px]" />

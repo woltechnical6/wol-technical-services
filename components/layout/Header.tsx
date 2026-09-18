@@ -83,7 +83,7 @@ export function Header() {
         >
           <div
             className={cn(
-              "relative flex h-16 items-center justify-between gap-4 rounded-full px-3 pl-2 transition-all duration-500 sm:px-4 lg:px-5",
+              "relative flex h-16 items-center justify-between gap-4 overflow-hidden rounded-full px-3 pl-2 transition-all duration-500 sm:px-4 lg:px-5",
               "border border-blue-100/70 bg-white shadow-[0_12px_40px_-16px_rgba(30,64,175,0.28)]",
               solid && "shadow-[0_16px_44px_-16px_rgba(30,64,175,0.35)]",
             )}

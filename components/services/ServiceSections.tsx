@@ -454,7 +454,7 @@ export function NextService({ service }: P) {
         </Reveal>
         <RevealGroup className="mt-8 grid gap-5 md:grid-cols-2" step={0.1}>
           {items.map(({ label, s, Icon, align }) => (
-            <RevealItem key={s.slug} className="h-full">
+            <RevealItem key={s.slug} className="h-full min-w-0">
               <TiltCard className={CARD} intensity={4} lift={8}>
                 <Link href={`/services/${s.slug}`} className={`flex h-full items-center gap-5 ${align}`}>
                   <span className="wol-icon-box flex size-12 shrink-0 items-center justify-center rounded-xl text-white">
