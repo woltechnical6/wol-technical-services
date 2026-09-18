@@ -1,0 +1,522 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   WOL design tokens — bright, open, editorial industrial system
+   ------------------------------------------------------------------ */
+:root {
+  --graphite-950: #f8f9fb;
+  --graphite-900: #f1f3f6;
+  --graphite-800: #e8ebef;
+  --graphite-700: #dde1e6;
+  --graphite-600: #c7cdd5;
+  --navy-900: #071b45;
+  --navy-800: #0a2a66;
+  --navy-700: #0d3a8a;
+  --blue-600: #1257b8;
+  --blue-500: #1e6fd9;
+  --blue-400: #4a8fe8;
+  --cyan-400: #1e6fd9;
+  --cyan-300: #4a8fe8;
+  --amber-500: #f5a21f;
+  --amber-600: #ee6f1c;
+  --steel-600: #4f5866;
+  --steel-500: #6b7684;
+  --steel-400: #8891a0;
+  --steel-300: #9aa4b2;
+  --steel-200: #c2c9d4;
+  --steel-100: #e4e9f0;
+  --white: #f7f9fc;
+
+  --ink-900: #10151d;
+  --ink-700: #333d49;
+  --ink-500: #5c6674;
+  --ink-300: #97a1ad;
+
+  /* Dedicated dark scrim for photo captions — independent of the (now light)
+     graphite background scale, since white on-photo text still needs a real
+     dark gradient underneath it regardless of the site's overall theme. */
+  --scrim-900: #0b0e13;
+  --scrim-800: #12161d;
+
+  /* Deep stage — the site's single dark register (engineering scene, footer). */
+  --deep-950: #060a12;
+  --deep-900: #0a1020;
+  --deep-800: #101a30;
+  --deep-line: rgba(255, 255, 255, 0.08);
+  --deep-line-strong: rgba(255, 255, 255, 0.16);
+
+  --line: rgba(16, 21, 29, 0.1);
+  --line-strong: rgba(16, 21, 29, 0.22);
+  --blueprint: rgba(30, 111, 217, 0.06);
+
+  --header-h: 76px;
+  --gutter: clamp(1rem, 4vw, 4rem);
+}
+
+@theme inline {
+  --color-graphite-950: var(--graphite-950);
+  --color-graphite-900: var(--graphite-900);
+  --color-graphite-800: var(--graphite-800);
+  --color-graphite-700: var(--graphite-700);
+  --color-graphite-600: var(--graphite-600);
+  --color-navy-900: var(--navy-900);
+  --color-navy-800: var(--navy-800);
+  --color-navy-700: var(--navy-700);
+  --color-blue-600: var(--blue-600);
+  --color-blue-500: var(--blue-500);
+  --color-blue-400: var(--blue-400);
+  --color-cyan-400: var(--cyan-400);
+  --color-cyan-300: var(--cyan-300);
+  --color-amber-500: var(--amber-500);
+  --color-amber-600: var(--amber-600);
+  --color-steel-600: var(--steel-600);
+  --color-steel-500: var(--steel-500);
+  --color-steel-400: var(--steel-400);
+  --color-steel-300: var(--steel-300);
+  --color-steel-200: var(--steel-200);
+  --color-steel-100: var(--steel-100);
+  --color-white: var(--white);
+  --color-ink-900: var(--ink-900);
+  --color-ink-700: var(--ink-700);
+  --color-ink-500: var(--ink-500);
+  --color-ink-300: var(--ink-300);
+  --color-scrim-900: var(--scrim-900);
+  --color-scrim-800: var(--scrim-800);
+  --color-deep-950: var(--deep-950);
+  --color-deep-900: var(--deep-900);
+  --color-deep-800: var(--deep-800);
+  --color-deep-line: var(--deep-line);
+  --color-deep-line-strong: var(--deep-line-strong);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --font-display: var(--font-display), "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-industrial: cubic-bezier(0.65, 0, 0.15, 1);
+
+  --breakpoint-xs: 26rem;
+  --breakpoint-3xl: 120rem;
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+html {
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--graphite-950);
+  color: var(--ink-700);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--blue-500);
+  color: var(--white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan-400);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+img {
+  user-select: none;
+}
+
+/* ------------------------------------------------------------------
+   Utilities — technical language
+   ------------------------------------------------------------------ */
+@utility container-wol {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  max-width: 96rem;
+}
+
+@utility tech-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+@utility surface-metal {
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.15) 40%, rgba(16, 21, 29, 0.02) 100%),
+    var(--graphite-800);
+  border: 1px solid var(--line);
+}
+
+/* Technical grid backgrounds */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.bg-grid-fine {
+  background-image:
+    linear-gradient(to right, rgba(154, 164, 178, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(154, 164, 178, 0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.bg-blueprint {
+  background-image:
+    linear-gradient(to right, var(--blueprint) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--blueprint) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Film-grain noise overlay */
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* Atmospheric light pools */
+.light-pool-blue {
+  background: radial-gradient(60% 50% at 50% 0%, rgba(30, 111, 217, 0.2), transparent 70%);
+}
+.light-pool-amber {
+  background: radial-gradient(40% 40% at 85% 100%, rgba(245, 162, 31, 0.1), transparent 70%);
+}
+
+/* Image colour-grade — light, restrained cool tint (not a dark scrim) */
+.grade::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(7, 27, 69, 0.06), rgba(7, 9, 12, 0.1)),
+    radial-gradient(100% 80% at 50% 50%, transparent 55%, rgba(7, 9, 12, 0.14) 100%);
+  mix-blend-mode: multiply;
+}
+
+/* Corner marks for image planes */
+.corner-marks::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--line-strong), var(--line-strong)) top left / 12px 1px no-repeat,
+    linear-gradient(var(--line-strong), var(--line-strong)) top left / 1px 12px no-repeat,
+    linear-gradient(var(--line-strong), var(--line-strong)) top right / 12px 1px no-repeat,
+    linear-gradient(var(--line-strong), var(--line-strong)) top right / 1px 12px no-repeat,
+    linear-gradient(var(--line-strong), var(--line-strong)) bottom left / 12px 1px no-repeat,
+    linear-gradient(var(--line-strong), var(--line-strong)) bottom left / 1px 12px no-repeat,
+    linear-gradient(var(--line-strong), var(--line-strong)) bottom right / 12px 1px no-repeat,
+    linear-gradient(var(--line-strong), var(--line-strong)) bottom right / 1px 12px no-repeat;
+}
+
+/* Perspective stage helpers */
+.stage-3d {
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Ticker */
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.ticker-track {
+  animation: ticker 60s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* Scanning line (footer / dividers) */
+@keyframes scan-x {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.scan-line {
+  animation: scan-x 9s var(--ease-industrial) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track,
+  .scan-line {
+    animation: none;
+  }
+}
+
+
+/* ------------------------------------------------------------------
+   Deep register helpers
+   ------------------------------------------------------------------ */
+.bg-grid-deep {
+  background-image:
+    linear-gradient(to right, var(--deep-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--deep-line) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.bg-grid-deep-fine {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Travelling pulse along a technical rail (section transitions). */
+@keyframes rail-pulse-y {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(400%);
+    opacity: 0;
+  }
+}
+.rail-pulse-y {
+  animation: rail-pulse-y 4.5s var(--ease-industrial) infinite;
+}
+
+/* Footer path animation — a dash that runs along drawn SVG routes. */
+@keyframes path-flow {
+  to {
+    stroke-dashoffset: -600;
+  }
+}
+.path-flow {
+  stroke-dasharray: 3 597;
+  animation: path-flow 9s linear infinite;
+}
+.path-flow-slow {
+  stroke-dasharray: 2 598;
+  animation: path-flow 14s linear infinite reverse;
+}
+
+/* Button primary — light sweep + depth */
+.btn-primary {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 14px 30px -14px rgba(30, 111, 217, 0.55);
+  transition: box-shadow 0.5s var(--ease-out-expo), background-color 0.3s;
+}
+.btn-primary:hover {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 22px 40px -16px rgba(30, 111, 217, 0.6);
+}
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+/* Button secondary — outline that fills smoothly from the bottom */
+.btn-secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ink-900);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.45s var(--ease-out-expo);
+}
+.btn-secondary:hover::before {
+  transform: scaleY(1);
+}
+.btn-secondary:hover {
+  color: var(--white);
+  border-color: var(--ink-900);
+}
+.btn-secondary.btn-on-deep::before {
+  background: var(--white);
+}
+.btn-secondary.btn-on-deep:hover {
+  color: var(--ink-900);
+  border-color: var(--white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail-pulse-y,
+  .path-flow,
+  .path-flow-slow {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* WOL premium surface system — shared by Contact / About / Services.  */
+/* Navy hero field, gold rule, pointer tilt, gradient-edge cards.      */
+/* ------------------------------------------------------------------ */
+@keyframes wol-orb-a { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(3rem,2rem,0) scale(1.12); } }
+@keyframes wol-orb-b { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(-2.5rem,-1.5rem,0) scale(1.08); } }
+.wol-hero-orb-a { animation: wol-orb-a 16s ease-in-out infinite; }
+.wol-hero-orb-b { animation: wol-orb-b 20s ease-in-out infinite; }
+
+@keyframes wol-shimmer-move { 0% { background-position: 0% 0; } 100% { background-position: 200% 0; } }
+.wol-shimmer { animation: wol-shimmer-move 2.6s linear infinite; }
+
+@keyframes wol-pulse-glow { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+.wol-pulse-dot { animation: wol-pulse-glow 2s ease-in-out infinite; }
+
+@keyframes wol-shine { 0% { transform: translateX(-140%) skewX(-15deg); } 100% { transform: translateX(240%) skewX(-15deg); } }
+.wol-shine { position: relative; overflow: hidden; }
+.wol-shine::after {
+  content: ""; position: absolute; inset: -20% -60%;
+  background: linear-gradient(75deg, transparent 42%, rgba(251,146,60,0.3) 50%, transparent 58%);
+  transform: translateX(-140%) skewX(-15deg); pointer-events: none;
+}
+.group:hover .wol-shine::after { animation: wol-shine 0.9s ease forwards; }
+
+.wol-tilt { transform-style: preserve-3d; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s ease; }
+.wol-tilt:hover { transform: perspective(1200px) rotateX(2.5deg) rotateY(-3.5deg) translateY(-5px); }
+.wol-tilt-subtle:hover { transform: perspective(1400px) rotateX(1.2deg) rotateY(-1.6deg) translateY(-3px); }
+
+@keyframes wol-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.wol-color-card { position: relative; }
+.wol-color-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(120deg, #2563eb, #f59e0b, #2563eb);
+  background-size: 220% 220%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+.wol-color-card:hover::before { opacity: 1; animation: wol-gradient-shift 3.2s ease infinite; }
+.wol-color-card .wol-icon-box { transition: background 0.5s ease; background: #0f172a; }
+.wol-color-card:hover .wol-icon-box { background: linear-gradient(135deg, #2563eb, #f59e0b); }
+
+.wol-blueprint-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, black 40%, transparent 85%);
+}
+
+.wol-sweep {
+  background-image: linear-gradient(90deg, transparent, rgba(34,211,238,0.35), transparent);
+}
+
+/* Chip — border + fill sweep to the blue→gold gradient on hover. */
+.wol-chip {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: color 0.35s ease, border-color 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease;
+}
+.wol-chip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(120deg, #2563eb, #f59e0b);
+  transform: translateX(-101%);
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+}
+.wol-chip:hover { color: #fff; border-color: transparent; transform: translateY(-2px); box-shadow: 0 12px 24px -14px rgba(37,99,235,0.55); }
+.wol-chip:hover::before { transform: translateX(0); }
+
+/* Numeral — flat ink that becomes gradient text when its card is hovered. */
+.wol-num { transition: color 0.35s ease, background-position 0.6s ease; }
+.group:hover .wol-num,
+.wol-num-active {
+  background: linear-gradient(120deg, #2563eb, #f59e0b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Gradient hairline under headings / between steps. */
+.wol-gradient-line { background: linear-gradient(90deg, #2563eb, #f59e0b); }
+.wol-gradient-line-soft { background: linear-gradient(90deg, rgba(37,99,235,0.35), rgba(245,158,11,0.35)); }
+
+/* Hero slideshow — hold-time progress bar, restarted by re-keying the node. */
+@keyframes wol-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.wol-hero-progress { transform-origin: left center; animation: wol-progress 4s linear forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .wol-hero-orb-a, .wol-hero-orb-b, .wol-shimmer, .wol-pulse-dot, .group:hover .wol-shine::after { animation: none !important; }
+  .wol-tilt:hover, .wol-tilt-subtle:hover { transform: none; }
+  .wol-color-card:hover::before { animation: none; opacity: 1; }
+  .wol-chip, .wol-chip::before { transition: none; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--graphite-950);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-300);
+  border: 2px solid var(--graphite-950);
+}

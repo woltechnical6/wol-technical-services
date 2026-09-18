@@ -1,0 +1,262 @@
+[
+  {
+    "file": "home/hero-plant-engineer.avif",
+    "source": "client-supplied",
+    "desc": "Engineer in a hard hat and high-visibility vest inspecting a process plant"
+  },
+  {
+    "file": "home/hero-refinery-dusk.jpg",
+    "source": "client-supplied",
+    "desc": "Refinery columns and flare stacks against a dusk sky"
+  },
+  {
+    "file": "home/hero-industrial-piping.jpg",
+    "id": "41X6FwTwPh4",
+    "author": "Ricardo Gomez Angel",
+    "desc": "A complex network of industrial metal pipes and valves in a factory setting",
+    "color": "#404040",
+    "blur": "L5A^LD~qIoWB~qRjt7Rj%gxu%Mt7",
+    "w": 7154,
+    "h": 4169
+  },
+  {
+    "file": "home/hero-equipment-commissioning.jpg",
+    "source": "client-supplied",
+    "desc": "Two engineers commissioning industrial equipment on site"
+  },
+  {
+    "file": "home/hero-welding-fabrication.jpg",
+    "id": "VW4xiLRr-do",
+    "author": "Glenn Hansen",
+    "desc": "time lapse photography of welding man",
+    "color": "#26260c",
+    "blur": "LA7ArFNI0g$$EMs.xtR+0gs-^%NJ",
+    "w": 4056,
+    "h": 2404
+  },
+  {
+    "file": "home/hero-electrical-instrumentation.jpg",
+    "id": "iQprhuG2ALk",
+    "author": "Anton Savinov",
+    "desc": "a close up of a pressure gauge on a machine",
+    "color": "#262626",
+    "blur": "L8EyiL9EDgDi4n?c9Ft8VpV??d?b",
+    "w": 5923,
+    "h": 3949
+  },
+  {
+    "file": "home/hero-control-room-engineer.jpg",
+    "id": "J44IFITaUYg",
+    "author": "Collab Media",
+    "desc": "a man wearing a hard hat working on a piece of metal",
+    "color": "#262626",
+    "blur": "LD8zfSwII;J.~qwIR*JU%#WBs9WC",
+    "w": 6373,
+    "h": 4249
+  },
+  {
+    "file": "home/about-team-drawings.jpg",
+    "source": "client-supplied",
+    "desc": "Four engineers in hard hats reviewing drawings on a refinery site"
+  },
+  {
+    "file": "home/cta-refinery-dusk.jpg",
+    "id": "-o0HZfyurbc",
+    "author": "Jonathan Wuyts",
+    "desc": "Industrial complex silhouetted against a bright sunset",
+    "color": "#f3d9a6",
+    "blur": "L]POxBt6ivRj~UWWi^o0E2WBW=og",
+    "w": 5977,
+    "h": 3985
+  },
+  {
+    "file": "services/mechanical-services.jpg",
+    "id": "mhUsz2ezlXQ",
+    "author": "Crystal Kwok",
+    "desc": "grey industrial equipment",
+    "color": "#f3f3f3",
+    "blur": "LHJko;00RkZ}-o-;%M9F~qR+xuxu",
+    "w": 5616,
+    "h": 3744
+  },
+  {
+    "file": "services/piping-fabrication.jpg",
+    "id": "scUBcasSvbE",
+    "author": "Samuel  Sianipar",
+    "desc": "grayscale photography of metal pipes",
+    "color": "#a6a6a6",
+    "blur": "LCE.|c%L00M{~WRjRjaeD%xu%Mof",
+    "w": 5211,
+    "h": 3474
+  },
+  {
+    "file": "services/welding-fabrication.jpg",
+    "id": "Wiu3w-99tNg",
+    "author": "Christopher Burns",
+    "desc": "man using welding machine",
+    "color": "#0c2626",
+    "blur": "LTCsp-00tlx]EL%MV@xaxZS4o0of",
+    "w": 5760,
+    "h": 3840
+  },
+  {
+    "file": "services/electrical-instrumentation.jpg",
+    "id": "47jO5Y8nsYo",
+    "author": "mostafa mahmoudi",
+    "desc": "a bunch of wires are plugged into a switch box",
+    "color": "#f3f3f3",
+    "blur": "LPH_.74nD%M_4Tt6WC-;-=RjM_t7",
+    "w": 6000,
+    "h": 4000
+  },
+  {
+    "file": "services/equipment-installation-maintenance.jpg",
+    "id": "wCSCTTZqHbI",
+    "author": "Rook of Arts",
+    "desc": "Crane lifting a large shipping container against the sky",
+    "color": "#c0d9f3",
+    "blur": "LGI$y:m%%hDNTM_4_3?b?ceSH;x^",
+    "w": 6000,
+    "h": 4000
+  },
+  {
+    "file": "services/industrial-maintenance.jpg",
+    "id": "bN_aaTKfwM0",
+    "author": "Sam Moghadam",
+    "desc": "A man in a grey and red shirt operating industrial machinery in a factory",
+    "color": "#0c2626",
+    "blur": "LPEour%20dxux]oLMxRj0KNG%3bb",
+    "w": 6000,
+    "h": 4000
+  },
+  {
+    "file": "services/oil-gas-technical-support.jpg",
+    "id": "vEoMKBdUIzs",
+    "author": "ThisisEngineering",
+    "desc": "man in black jacket wearing yellow hard hat",
+    "color": "#f3f3f3",
+    "blur": "LqKm@V*_Z%Md_4Z~IUozNet7RikB",
+    "w": 7952,
+    "h": 5304
+  },
+  {
+    "file": "services/project-site-technical-services.jpg",
+    "id": "sgYamIzhAhg",
+    "author": "Etienne Girardet",
+    "desc": "two men working",
+    "color": "#c0d9d9",
+    "blur": "LJE:e[x^00IA%MxuIoniNZ.8RPD%",
+    "w": 4928,
+    "h": 3264
+  },
+  {
+    "file": "industries/refineries.jpg",
+    "id": "76yzygeNLT0",
+    "author": "Christian Harb",
+    "desc": "A factory with a lot of red and white pipes",
+    "color": "#a6c0d9",
+    "blur": "LlH:H{RiaKoeyZWBayayIUofkCae",
+    "w": 5736,
+    "h": 3585
+  },
+  {
+    "file": "industries/petrochemical.jpg",
+    "id": "7-1NgQ0SsyE",
+    "author": "K. Mitch Hodge",
+    "desc": "a large industrial building next to a body of water",
+    "color": "#c0d9d9",
+    "blur": "LlK_awNGaxs:_4WVayofxvn$WXWX",
+    "w": 4592,
+    "h": 2583
+  },
+  {
+    "file": "industries/industrial-plants.jpg",
+    "id": "uqRk_ik5_uY",
+    "author": "Peter Herrmann",
+    "desc": "Large empty industrial warehouse with yellow overhead cranes",
+    "color": "#8c8c8c",
+    "blur": "LND]MCZ~E1o#4TxtxubHkDs,xYWA",
+    "w": 6048,
+    "h": 4024
+  },
+  {
+    "file": "industries/energy-infrastructure.jpg",
+    "id": "9GwMIek9jnY",
+    "author": "Alex Simpson",
+    "desc": "gray and red factory building under a calm blue sky",
+    "color": "#73c0d9",
+    "blur": "LnEEV~xubvofyZoen$aeDiWCnhf6",
+    "w": 5435,
+    "h": 4594
+  },
+  {
+    "file": "industries/marine-offshore.jpg",
+    "id": "guADzpF9pDI",
+    "author": "Zach Theo",
+    "desc": "oil rig",
+    "color": "#a6c0d9",
+    "blur": "LmC[6IWAogj[yGfiaxj[E7j?V@j[",
+    "w": 6000,
+    "h": 4000
+  },
+  {
+    "file": "pages/about.jpg",
+    "id": "6Xg267sypu8",
+    "author": "PhotoHound",
+    "desc": "a view of a city at night from the top of a skyscraper",
+    "color": "#595973",
+    "blur": "LFFhCu-qEk-nk]^j={AH58JBbw$%",
+    "w": 7360,
+    "h": 4912
+  },
+  {
+    "file": "pages/services-index.jpg",
+    "id": "vOtSZd_8Af4",
+    "author": "Jakub Pabis",
+    "desc": "a factory with pipes and a sky background",
+    "color": "#a6c0d9",
+    "blur": "LbH{WsOZ%hjE.TIUf+j?R4WAV?kC",
+    "w": 6000,
+    "h": 4000
+  },
+  {
+    "file": "pages/industries-index.jpg",
+    "id": "L4gN0aeaPY4",
+    "author": "Quinten de Graaf",
+    "desc": "metal pipe between trees at daytime",
+    "color": "#262626",
+    "blur": "LNC?48?FD%IV~9%0E2NG?FayIoWB",
+    "w": 4852,
+    "h": 3235
+  },
+  {
+    "file": "pages/projects.jpg",
+    "id": "YNm1fhRIMa8",
+    "author": "Adesh Bankar",
+    "desc": "a crane lifting a building",
+    "color": "#268cd9",
+    "blur": "LK7gUJR:gRWZIiobVWoJv_W?o~jE",
+    "w": 5456,
+    "h": 3632
+  },
+  {
+    "file": "pages/contact.jpg",
+    "id": "aKj9uDanF18",
+    "author": "Ahmed Aldaie",
+    "desc": "The Burj Khalifa rising above the skyline of Downtown Dubai under dark storm clouds",
+    "color": "#a6a6a6",
+    "blur": "LVD0WDoff6s:?^s:Rjs:-oR+R*W;",
+    "w": 6000,
+    "h": 3900
+  },
+  {
+    "file": "industries/oil-gas.jpg",
+    "id": "GrmwVnVSSdU",
+    "author": "Zbynek Burival",
+    "desc": "oil pump jack silhouette against red sunset",
+    "color": "#260c0c",
+    "blur": "LTCf|y$O1eE$wejaoKoK65Nv=I$O",
+    "w": 3626,
+    "h": 2479
+  }
+]
