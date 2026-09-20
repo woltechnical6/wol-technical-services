@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { industries } from "@/content/industries";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { TiltCard } from "@/components/motion/TiltCard";
+import { cn } from "@/lib/utils";
 
 /**
  * Industries — six sector cards on a navy band. Each card is a tilting
@@ -53,8 +54,11 @@ export function IndustriesPanels() {
         </div>
 
         <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" step={0.08}>
-          {industries.map((ind) => (
-            <RevealItem key={ind.slug} className="h-full">
+          {industries.map((ind, i) => (
+            <RevealItem
+              key={ind.slug}
+              className={cn("h-full", i === industries.length - 1 && industries.length % 3 === 1 && "lg:col-start-2")}
+            >
               <TiltCard
                 className="wol-tilt wol-shine wol-color-card group h-full rounded-2xl border border-white/10 bg-white/[0.04] shadow-[0_24px_48px_-30px_rgba(2,8,23,0.8)] backdrop-blur transition-colors duration-300 hover:bg-white/[0.07]"
                 intensity={5}

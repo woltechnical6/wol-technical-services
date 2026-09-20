@@ -13,7 +13,11 @@ export type ServiceIconKey =
   | "installation"
   | "maintenance"
   | "support"
-  | "site";
+  | "site"
+  | "automation"
+  | "scada"
+  | "plc"
+  | "integration";
 
 /** Layout variant drives how each service page composes its sections. */
 export type ServiceLayout = "editorial" | "technical" | "split" | "immersive";
@@ -56,9 +60,13 @@ export type Industry = {
   index: string;
   title: string;
   summary: string;
+  /** One-line descriptor for the header dropdown row. */
+  menuDescription: string;
   description: string[];
   image: ImageAsset;
   typicalScope: string[];
   relatedServices: string[];
+  /** Sector-specific FAQs; falls back to the shared home FAQ set when omitted. */
+  faq?: FaqItem[];
   seo: { title: string; description: string };
 };

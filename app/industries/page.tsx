@@ -1,20 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Building2,
-  ChevronDown,
-  Factory,
-  FlaskConical,
-  Fuel,
-  Info,
-  Lightbulb,
-  Ship,
-  TrendingUp,
-  Zap,
-} from "lucide-react";
+import { ArrowRight, ChevronDown, Info, Lightbulb, TrendingUp } from "lucide-react";
 import { industries } from "@/content/industries";
+import { IndustryIcon } from "@/components/icons/IndustryIcon";
 import { industriesPage } from "@/content/pages";
 import { CinematicCTA } from "@/components/scenes/CinematicCTA";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
@@ -25,7 +14,7 @@ import { cn } from "@/lib/utils";
 const INDUSTRY_FAQS = [
   {
     q: "Which sectors does WOL support?",
-    a: "Oil & gas production, refineries, petrochemical facilities, industrial plants, energy infrastructure and marine & offshore assets across the UAE. Each sector page describes the typical scopes we are mobilised for.",
+    a: "Oil & gas production, refineries, petrochemical facilities, industrial plants, energy infrastructure, marine & offshore assets and manufacturing facilities across the UAE. Each sector page describes the typical scopes we are mobilised for.",
   },
   {
     q: "Do you work inside live, operating facilities?",
@@ -37,7 +26,7 @@ const INDUSTRY_FAQS = [
   },
   {
     q: "Are the same services available in every sector?",
-    a: "All eight disciplines can be mobilised in any sector, but the mix differs. Refineries and petrochemical plants typically call on piping, welding and mechanical work; industrial plants and energy infrastructure lean more on E&I, installation and maintenance.",
+    a: "All twelve disciplines can be mobilised in any sector, but the mix differs. Refineries and petrochemical plants typically call on piping, welding and mechanical work; industrial plants and energy infrastructure lean more on E&I, installation and maintenance; manufacturing sites draw most on automation, control systems and integration.",
   },
   {
     q: "What does a typical sector engagement look like?",
@@ -47,21 +36,11 @@ const INDUSTRY_FAQS = [
 
 export const metadata: Metadata = {
   title: "Industries",
-  description: "Oil & gas, refineries, petrochemical, industrial plants, energy infrastructure and marine/offshore — sectors WOL Technical Services supports in the UAE.",
+  description: "Oil & gas, refineries, petrochemical, industrial plants, energy infrastructure, marine/offshore and manufacturing — sectors WOL Technical Services supports in the UAE.",
   alternates: { canonical: "/industries" },
 };
 
 const normalize = (title: string) => title.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-
-/** Sector-specific icon, matched by normalized title so it survives minor copy edits in the content layer. */
-const SECTOR_ICON: Record<string, typeof Fuel> = {
-  "oil-and-gas": Fuel,
-  refineries: Factory,
-  "petrochemical-facilities": FlaskConical,
-  "industrial-plants": Factory,
-  "energy-infrastructure": Zap,
-  "marine-and-offshore": Ship,
-};
 
 /**
  * Challenges / Solutions / Benefits copy for each sector, written out in full so this
@@ -190,6 +169,26 @@ const SECTOR_DETAILS: Record<string, { challenges: string[]; solutions: string[]
       "Crews mobilised without last-minute delays",
     ],
   },
+  "manufacturing-and-industrial": {
+    challenges: [
+      "Ageing or manual production lines limiting throughput",
+      "Machinery from several vendors that does not communicate",
+      "Little visibility of downtime, output and energy use",
+      "Control work that must fit around production hours",
+    ],
+    solutions: [
+      "Automation and control upgrades engineered and tested off-line",
+      "Integration of OEM machinery into one line control and SCADA layer",
+      "Monitoring and reporting sized to the plant, from one screen upward",
+      "Site work sequenced around shifts, weekends and planned stops",
+    ],
+    benefits: [
+      "Consistent output with less manual intervention",
+      "One supervisory view across every machine on the line",
+      "Faults located faster through clear alarms and diagnostics",
+      "Control, electrical and mechanical support from one team",
+    ],
+  },
 };
 
 const FALLBACK_DETAILS = {
@@ -304,7 +303,6 @@ export default function IndustriesIndexPage() {
         <div className="container-wol space-y-24 md:space-y-32">
           {industries.map((ind, i) => {
             const key = normalize(ind.title);
-            const Icon = SECTOR_ICON[key] ?? Building2;
             const details = SECTOR_DETAILS[key] ?? FALLBACK_DETAILS;
             const flip = i % 2 === 1;
 
@@ -316,7 +314,7 @@ export default function IndustriesIndexPage() {
                     Sector focus
                   </span>
                   <div className="mt-5 flex size-12 items-center justify-center rounded-full bg-ink-900">
-                    <Icon className="size-5 text-amber-400" strokeWidth={1.75} />
+                    <IndustryIcon slug={ind.slug} className="size-5 text-amber-400" />
                   </div>
                   <h2 className="font-display mt-5 text-3xl font-bold text-ink-900 md:text-4xl">{ind.title}</h2>
                   <p className="mt-4 max-w-lg text-base leading-relaxed text-ink-500">{ind.summary}</p>
@@ -388,7 +386,7 @@ export default function IndustriesIndexPage() {
                     </ParallaxImage>
                     <div className="absolute bottom-4 left-4 flex items-center gap-3 rounded-full bg-white/95 py-1.5 pl-1.5 pr-5 shadow-lg backdrop-blur">
                       <span className="flex size-9 items-center justify-center rounded-full bg-amber-400">
-                        <Icon className="size-4 text-ink-900" strokeWidth={1.75} />
+                        <IndustryIcon slug={ind.slug} className="size-4 text-ink-900" />
                       </span>
                       <span>
                         <span className="block text-[10px] font-semibold uppercase tracking-widest text-ink-500">

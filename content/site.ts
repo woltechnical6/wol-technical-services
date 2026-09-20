@@ -29,7 +29,7 @@ export const site = {
   tagline: "Oil & Gas Technical Services",
   descriptor: "Oil & Gas · Technical Services · Dubai, UAE",
   description:
-    "WOL Technical Services is a Dubai-based technical services company supporting oil & gas and industrial facilities with mechanical, piping, welding, electrical and maintenance work.",
+    "WOL Technical Services is a Dubai-based technical services company supporting oil & gas and industrial facilities with mechanical, piping, welding, electrical, automation and maintenance work.",
   url: resolveSiteUrl(),
   location: {
     city: "Dubai",
@@ -53,8 +53,8 @@ export const nav = {
   primary: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
-    { label: "Services", href: "/services", mega: true },
-    { label: "Industries", href: "/industries" },
+    { label: "Services", href: "/services", mega: "services" as const },
+    { label: "Industries", href: "/industries", mega: "industries" as const },
     { label: "FAQs", href: "/faqs" },
     { label: "Contact", href: "/contact" },
   ],

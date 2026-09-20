@@ -183,8 +183,8 @@ const WHY_CHOOSE = [
     body: "We confirm crew availability and realistic timelines up front, so the schedule you're given is the schedule you get.",
   },
   {
-    title: "Five disciplines, one crew",
-    body: "Mechanical, piping, welding, electrical & instrumentation and site technical support work from the same scope and the same standards.",
+    title: "Six disciplines, one crew",
+    body: "Mechanical, piping, welding, electrical & instrumentation, automation and site technical support work from the same scope and the same standards.",
   },
   {
     title: "Site-tested safety discipline",
@@ -203,7 +203,7 @@ const FAQS = [
   },
   {
     q: "Which industries and plant types do you work with?",
-    a: "Our disciplines span mechanical, piping, welding, electrical & instrumentation, and site technical support — built for the way plants and process facilities actually operate.",
+    a: "Our disciplines span mechanical, piping, welding, electrical & instrumentation, automation & control, and site technical support — built for the way plants and process facilities actually operate.",
   },
   {
     q: "How quickly can you mobilise a team?",
@@ -507,7 +507,7 @@ export default function AboutPage() {
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <Reveal>
               <h2 id="disc-title" className="font-display text-3xl font-bold text-ink-900 md:text-4xl">
-                Five Disciplines Under One Roof
+                Six Disciplines Under One Roof
               </h2>
               <GoldRule />
             </Reveal>
@@ -518,7 +518,7 @@ export default function AboutPage() {
             </Reveal>
           </div>
 
-          <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5" step={0.05}>
+          <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" step={0.05}>
             {disciplines.map((d) => (
               <RevealItem key={d.code}>
                 <TiltCard

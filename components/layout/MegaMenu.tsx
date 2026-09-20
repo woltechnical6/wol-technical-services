@@ -4,28 +4,34 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { services } from "@/content/services";
-import { ServiceIcon } from "@/components/icons/ServiceIcon";
 import { cn } from "@/lib/utils";
 import { EASE_OUT_EXPO } from "@/lib/motion";
-
-const SPLIT = Math.ceil(services.length / 2);
+import type { MegaMenuConfig, MegaMenuItem } from "./megaMenus";
 
 /**
- * Services mega-menu.
+ * Header mega-menu, driven by a MegaMenuConfig (services or industries).
  * Visual language mirrors the header pill: white glass shell, blue-100 hairlines,
- * cool blue base with a single warm amber/orange accent. Left = indexed service
+ * cool blue base with a single warm amber/orange accent. Left = indexed item
  * list (two columns), right = live preview pane.
  */
-export function MegaMenu({ onClose }: { onClose: () => void }) {
+export function MegaMenu({ config, onClose }: { config: MegaMenuConfig; onClose: () => void }) {
+  const { items } = config;
+  const SPLIT = Math.ceil(items.length / 2);
   const [activeIdx, setActiveIdx] = useState(0);
-  const active = services[activeIdx];
   const reduce = useReducedMotion();
+
+  // Reset the highlighted row when the header swaps between menus (state adjustment during render).
+  const [menuKey, setMenuKey] = useState(config.key);
+  if (menuKey !== config.key) {
+    setMenuKey(config.key);
+    setActiveIdx(0);
+  }
+  const active = items[Math.min(activeIdx, items.length - 1)];
 
   // Roving focus across both list columns.
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const focusItem = (i: number) => {
-    const next = (i + services.length) % services.length;
+    const next = (i + items.length) % items.length;
     setActiveIdx(next);
     itemRefs.current[next]?.focus();
   };
@@ -54,7 +60,7 @@ export function MegaMenu({ onClose }: { onClose: () => void }) {
         break;
       case "End":
         e.preventDefault();
-        focusItem(services.length - 1);
+        focusItem(items.length - 1);
         break;
     }
   };
@@ -78,23 +84,28 @@ export function MegaMenu({ onClose }: { onClose: () => void }) {
           className="pointer-events-none absolute -right-10 -top-16 h-48 w-72 rounded-full bg-linear-to-bl from-amber-300/30 via-orange-400/10 to-transparent blur-3xl"
         />
 
-        <div
+        <motion.div
+          key={config.key}
           role="menu"
-          aria-label="Services"
+          aria-label={config.label}
           onKeyDown={onListKeyDown}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
           className="relative grid grid-cols-[1fr_1fr_0.95fr]"
         >
           {/* Column 1 — index list */}
           <div className="border-r border-blue-100/70 p-5">
-            <ColumnHead label="Service index" />
+            <ColumnHead label={config.indexLabel} />
             <ul role="none" className="space-y-1">
-              {services.slice(0, SPLIT).map((s, i) => (
+              {items.slice(0, SPLIT).map((s, i) => (
                 <MenuRow
-                  key={s.slug}
+                  key={s.key}
                   ref={(el) => {
                     itemRefs.current[i] = el;
                   }}
-                  service={s}
+                  menuKey={config.key}
+                  item={s}
                   active={i === activeIdx}
                   onActivate={() => setActiveIdx(i)}
                   onClose={onClose}
@@ -107,13 +118,14 @@ export function MegaMenu({ onClose }: { onClose: () => void }) {
           <div className="border-r border-blue-100/70 p-5">
             <ColumnHead label="Continued" />
             <ul role="none" className="space-y-1">
-              {services.slice(SPLIT).map((s, i) => (
+              {items.slice(SPLIT).map((s, i) => (
                 <MenuRow
-                  key={s.slug}
+                  key={s.key}
                   ref={(el) => {
                     itemRefs.current[i + SPLIT] = el;
                   }}
-                  service={s}
+                  menuKey={config.key}
+                  item={s}
                   active={i + SPLIT === activeIdx}
                   onActivate={() => setActiveIdx(i + SPLIT)}
                   onClose={onClose}
@@ -127,9 +139,9 @@ export function MegaMenu({ onClose }: { onClose: () => void }) {
             <ColumnHead label="Preview" />
 
             <div className="relative aspect-16/11 overflow-hidden rounded-2xl border border-blue-100/70 shadow-[0_18px_40px_-20px_rgba(30,64,175,0.45)]">
-              {services.map((s, i) => (
+              {items.map((s, i) => (
                 <Image
-                  key={s.slug}
+                  key={s.key}
                   src={s.image.src}
                   alt=""
                   aria-hidden
@@ -150,7 +162,7 @@ export function MegaMenu({ onClose }: { onClose: () => void }) {
 
               <div className="absolute inset-x-3 bottom-3 flex items-end justify-between gap-3">
                 <motion.span
-                  key={active.slug}
+                  key={active.key}
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, ease: EASE_OUT_EXPO }}
@@ -166,7 +178,7 @@ export function MegaMenu({ onClose }: { onClose: () => void }) {
             </div>
 
             <motion.p
-              key={`${active.slug}-tagline`}
+              key={`${active.key}-tagline`}
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: EASE_OUT_EXPO, delay: 0.05 }}
@@ -176,23 +188,23 @@ export function MegaMenu({ onClose }: { onClose: () => void }) {
             </motion.p>
 
             <Link
-              href={`/services/${active.slug}`}
+              href={active.href}
               onClick={onClose}
               className="group mt-4 inline-flex items-center gap-1.5 font-display text-[12px] font-medium uppercase tracking-[0.14em] text-blue-600 transition-colors hover:text-orange-600"
             >
-              Open service
+              {config.openLabel}
               <ArrowUpRight
                 className="size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                 strokeWidth={2}
               />
             </Link>
           </div>
-        </div>
+        </motion.div>
 
         {/* Footer */}
         <div className="relative flex items-center justify-end border-t border-blue-100/70 bg-white/60 px-5 py-3">
           <Link
-            href="/services"
+            href={config.allHref}
             onClick={onClose}
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-linear-to-br from-blue-500 via-blue-600 to-blue-800 px-4 py-2 font-display text-[11px] font-medium uppercase tracking-[0.14em] text-white shadow-[0_8px_24px_-8px_rgba(29,78,216,0.55)] ring-1 ring-transparent transition-shadow hover:shadow-[0_10px_28px_-6px_rgba(249,115,22,0.35)] hover:ring-orange-300/40"
           >
@@ -200,7 +212,7 @@ export function MegaMenu({ onClose }: { onClose: () => void }) {
               aria-hidden
               className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -skew-x-12 -translate-x-[160%] bg-linear-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[220%]"
             />
-            <span className="relative">View all services</span>
+            <span className="relative">{config.allLabel}</span>
             <ArrowRight
               className="relative size-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
               strokeWidth={2}
@@ -223,7 +235,8 @@ function ColumnHead({ label }: { label: string }) {
 }
 
 type MenuRowProps = {
-  service: (typeof services)[number];
+  menuKey: string;
+  item: MegaMenuItem;
   active: boolean;
   onActivate: () => void;
   onClose: () => void;
@@ -231,7 +244,8 @@ type MenuRowProps = {
 
 const MenuRow = function MenuRowInner({
   ref,
-  service,
+  menuKey,
+  item,
   active,
   onActivate,
   onClose,
@@ -240,12 +254,12 @@ const MenuRow = function MenuRowInner({
     <li role="none" className="relative">
       {active && (
         <motion.span
-          layoutId="mega-row-pill"
+          layoutId={`${menuKey}-mega-row-pill`}
           transition={{ type: "spring", stiffness: 500, damping: 38 }}
           className="absolute inset-0 z-0 rounded-2xl bg-linear-to-b from-blue-50 via-blue-50 to-orange-50/40 ring-1 ring-blue-100"
         >
           <motion.span
-            layoutId="mega-row-accent"
+            layoutId={`${menuKey}-mega-row-accent`}
             transition={{ type: "spring", stiffness: 500, damping: 38 }}
             className="absolute inset-y-2 left-0 w-[2px] rounded-full bg-linear-to-b from-amber-400 to-orange-500"
           />
@@ -256,7 +270,7 @@ const MenuRow = function MenuRowInner({
         ref={ref}
         role="menuitem"
         tabIndex={active ? 0 : -1}
-        href={`/services/${service.slug}`}
+        href={item.href}
         onMouseEnter={onActivate}
         onFocus={onActivate}
         onClick={onClose}
@@ -268,7 +282,7 @@ const MenuRow = function MenuRowInner({
             active ? "text-orange-500" : "text-ink-500/70",
           )}
         >
-          {service.index}
+          {item.index}
         </span>
 
         <span
@@ -279,7 +293,7 @@ const MenuRow = function MenuRowInner({
               : "border-blue-100/80 bg-white/70 text-ink-500",
           )}
         >
-          <ServiceIcon name={service.icon} className="size-5" />
+          {item.icon}
         </span>
 
         <span className="min-w-0 flex-1">
@@ -289,10 +303,10 @@ const MenuRow = function MenuRowInner({
               active ? "text-ink-900" : "text-ink-700",
             )}
           >
-            {service.title}
+            {item.title}
           </span>
           <span className="mt-0.5 block text-xs leading-snug text-ink-500">
-            {service.menuDescription}
+            {item.description}
           </span>
         </span>
 

@@ -12,7 +12,6 @@ import {
   MessageSquare,
   ClipboardList,
   Send,
-  ChevronDown,
   CheckCircle2,
 } from "lucide-react";
 import { contactPage } from "@/content/pages";
@@ -20,6 +19,7 @@ import { site } from "@/content/site";
 import { CinematicCTA } from "@/components/scenes/CinematicCTA";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { TiltCard } from "@/components/motion/TiltCard";
+import { EnquirySelect } from "@/components/forms/EnquirySelect";
 
 /**
  * Page-scoped type pairing, matched to the About page so the two read as one site.
@@ -47,17 +47,6 @@ export const metadata: Metadata = {
 };
 
 type SearchParams = Promise<{ service?: string | string[]; sent?: string | string[] }>;
-
-const INQUIRY_OPTIONS = [
-  { value: "general", label: "General enquiry" },
-  { value: "quotation", label: "Request a quotation" },
-  { value: "mechanical", label: "Mechanical" },
-  { value: "piping", label: "Piping" },
-  { value: "welding", label: "Welding" },
-  { value: "electrical-instrumentation", label: "Electrical & Instrumentation" },
-  { value: "site-support", label: "Site technical support" },
-  { value: "other", label: "Other" },
-];
 
 /** Three-step expectation setter — a genuine sequence, so numbering is meaningful. */
 const PROCESS = [
@@ -137,9 +126,6 @@ async function submitContactForm(formData: FormData) {
 
 const inputClass =
   "w-full rounded-xl border border-line bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-colors duration-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/15";
-
-const selectClass =
-  "w-full appearance-none rounded-full border border-line bg-white px-4 py-3 pr-10 text-sm text-ink-900 transition-colors duration-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/15";
 
 function FormField({ label, htmlFor, children }: { label: string; htmlFor: string; children: React.ReactNode }) {
   return (
@@ -448,19 +434,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
                     </div>
 
                     <FormField label="How can we help?" htmlFor="service">
-                      <div className="relative">
-                        <select id="service" name="service" defaultValue={defaultService ?? ""} required className={selectClass}>
-                          <option value="" disabled>
-                            Select an enquiry type...
-                          </option>
-                          {INQUIRY_OPTIONS.map((option) => (
-                            <option key={option.value} value={option.value}>
-                              {option.label}
-                            </option>
-                          ))}
-                        </select>
-                        <ChevronDown className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-ink-400" strokeWidth={1.75} />
-                      </div>
+                      <EnquirySelect id="service" name="service" defaultValue={defaultService} />
                     </FormField>
 
                     <FormField label="Your message" htmlFor="message">

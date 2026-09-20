@@ -5,10 +5,9 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight, ChevronDown, MapPin, Phone } from "lucide-react";
 import { nav, site } from "@/content/site";
-import { services } from "@/content/services";
-import { ServiceIcon } from "@/components/icons/ServiceIcon";
 import { cn } from "@/lib/utils";
 import { EASE_OUT_EXPO } from "@/lib/motion";
+import { MEGA_MENUS, type MegaMenuConfig, type MegaMenuKey } from "./megaMenus";
 
 /**
  * Mobile / tablet navigation. Mirrors the desktop header + mega-menu language:
@@ -18,7 +17,10 @@ import { EASE_OUT_EXPO } from "@/lib/motion";
 export function MobileNav({ onClose }: { onClose: () => void }) {
   const pathname = usePathname();
   const reduce = useReducedMotion();
-  const [servicesOpen, setServicesOpen] = useState(pathname.startsWith("/services"));
+  // Which accordion (services / industries) is expanded — the one matching the current route by default.
+  const [openMenu, setOpenMenu] = useState<MegaMenuKey | null>(
+    () => nav.primary.find((item) => item.mega && pathname.startsWith(item.href))?.mega ?? null,
+  );
 
   useEffect(() => {
     const prev = document.body.style.overflow;
@@ -100,88 +102,16 @@ export function MobileNav({ onClose }: { onClose: () => void }) {
                     )}
 
                     {item.mega ? (
-                      <>
-                        <button
-                          onClick={() => setServicesOpen((o) => !o)}
-                          aria-expanded={servicesOpen}
-                          aria-controls="mobile-services"
-                          className={cn(
-                            "relative z-10 flex w-full items-center gap-4 rounded-2xl px-3 py-3.5 text-left transition-colors",
-                            servicesOpen || active ? "text-ink-900" : "text-ink-700",
-                          )}
-                        >
-                          <span className={cn("font-mono text-[11px] tabular-nums", active || servicesOpen ? "text-orange-500" : "text-ink-500/70")}>{index}</span>
-                          <span className="flex-1 font-display text-lg font-medium sm:text-xl">{item.label}</span>
-                          <span
-                            className={cn(
-                              "grid size-8 place-items-center rounded-full border transition-all duration-300",
-                              servicesOpen ? "border-blue-200 bg-blue-50 text-blue-600" : "border-blue-100 text-ink-500",
-                            )}
-                          >
-                            <ChevronDown className={cn("size-4 transition-transform duration-300", servicesOpen && "rotate-180")} strokeWidth={1.75} />
-                          </span>
-                        </button>
-
-                        <AnimatePresence initial={false}>
-                          {servicesOpen && (
-                            <motion.div
-                              id="mobile-services"
-                              key="services"
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
-                              className="overflow-hidden"
-                            >
-                              <div className="mx-1 mb-2 rounded-2xl border border-blue-100/70 bg-linear-to-b from-blue-50/60 via-white to-orange-50/30 p-1.5">
-                                <ul className="grid gap-0.5 sm:grid-cols-2">
-                                  {services.map((s) => {
-                                    const sActive = pathname === `/services/${s.slug}`;
-                                    return (
-                                      <li key={s.slug} className="min-w-0">
-                                        <Link
-                                          href={`/services/${s.slug}`}
-                                          onClick={onClose}
-                                          className={cn(
-                                            "group flex items-start gap-3 rounded-xl px-2.5 py-2.5 transition-colors",
-                                            sActive ? "bg-white ring-1 ring-blue-100" : "hover:bg-white/80",
-                                          )}
-                                        >
-                                          <span
-                                            className={cn(
-                                              "grid size-9 shrink-0 place-items-center rounded-xl border transition-all duration-300",
-                                              sActive
-                                                ? "border-blue-200 bg-linear-to-br from-blue-500 to-blue-700 text-white shadow-[0_6px_16px_-6px_rgba(29,78,216,0.6)]"
-                                                : "border-blue-100/80 bg-white text-ink-500 group-active:bg-blue-50",
-                                            )}
-                                          >
-                                            <ServiceIcon name={s.icon} className="size-5" />
-                                          </span>
-                                          <span className="min-w-0 flex-1">
-                                            <span className="flex min-w-0 items-center gap-2">
-                                              <span className="font-mono text-[10px] tabular-nums text-ink-500/70">{s.index}</span>
-                                              <span className={cn("min-w-0 truncate font-display text-sm font-medium", sActive ? "text-ink-900" : "text-ink-700")}>{s.title}</span>
-                                            </span>
-                                            <span className="mt-0.5 line-clamp-1 text-xs leading-snug text-ink-500">{s.menuDescription}</span>
-                                          </span>
-                                        </Link>
-                                      </li>
-                                    );
-                                  })}
-                                </ul>
-                                <Link
-                                  href="/services"
-                                  onClick={onClose}
-                                  className="group mt-1 flex items-center justify-between rounded-xl border-t border-blue-100/70 px-3 py-2.5 font-display text-[11px] font-medium uppercase tracking-[0.14em] text-blue-600 transition-colors hover:text-orange-600"
-                                >
-                                  View all services
-                                  <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={2} />
-                                </Link>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </>
+                      <MobileMenuGroup
+                        menu={MEGA_MENUS[item.mega]}
+                        index={index}
+                        label={item.label}
+                        active={active}
+                        open={openMenu === item.mega}
+                        onToggle={() => setOpenMenu((o) => (o === item.mega ? null : item.mega))}
+                        pathname={pathname}
+                        onClose={onClose}
+                      />
                     ) : (
                       <Link
                         href={item.href}
@@ -248,5 +178,105 @@ export function MobileNav({ onClose }: { onClose: () => void }) {
         </motion.div>
       </div>
     </motion.div>
+  );
+}
+
+type MobileMenuGroupProps = {
+  menu: MegaMenuConfig;
+  index: string;
+  label: string;
+  active: boolean;
+  open: boolean;
+  onToggle: () => void;
+  pathname: string;
+  onClose: () => void;
+};
+
+/** Accordion group for a dropdown section (services / industries) — same row language as the desktop mega menu. */
+function MobileMenuGroup({ menu, index, label, active, open, onToggle, pathname, onClose }: MobileMenuGroupProps) {
+  const panelId = `mobile-${menu.key}`;
+  return (
+    <>
+      <button
+        onClick={onToggle}
+        aria-expanded={open}
+        aria-controls={panelId}
+        className={cn(
+          "relative z-10 flex w-full items-center gap-4 rounded-2xl px-3 py-3.5 text-left transition-colors",
+          open || active ? "text-ink-900" : "text-ink-700",
+        )}
+      >
+        <span className={cn("font-mono text-[11px] tabular-nums", active || open ? "text-orange-500" : "text-ink-500/70")}>{index}</span>
+        <span className="flex-1 font-display text-lg font-medium sm:text-xl">{label}</span>
+        <span
+          className={cn(
+            "grid size-8 place-items-center rounded-full border transition-all duration-300",
+            open ? "border-blue-200 bg-blue-50 text-blue-600" : "border-blue-100 text-ink-500",
+          )}
+        >
+          <ChevronDown className={cn("size-4 transition-transform duration-300", open && "rotate-180")} strokeWidth={1.75} />
+        </span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            id={panelId}
+            key={menu.key}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
+            className="overflow-hidden"
+          >
+            <div className="mx-1 mb-2 rounded-2xl border border-blue-100/70 bg-linear-to-b from-blue-50/60 via-white to-orange-50/30 p-1.5">
+              <ul className="grid gap-0.5 sm:grid-cols-2">
+                {menu.items.map((s) => {
+                  const sActive = pathname === s.href;
+                  return (
+                    <li key={s.key} className="min-w-0">
+                      <Link
+                        href={s.href}
+                        onClick={onClose}
+                        className={cn(
+                          "group flex items-start gap-3 rounded-xl px-2.5 py-2.5 transition-colors",
+                          sActive ? "bg-white ring-1 ring-blue-100" : "hover:bg-white/80",
+                        )}
+                      >
+                        <span
+                          className={cn(
+                            "grid size-9 shrink-0 place-items-center rounded-xl border transition-all duration-300",
+                            sActive
+                              ? "border-blue-200 bg-linear-to-br from-blue-500 to-blue-700 text-white shadow-[0_6px_16px_-6px_rgba(29,78,216,0.6)]"
+                              : "border-blue-100/80 bg-white text-ink-500 group-active:bg-blue-50",
+                          )}
+                        >
+                          {s.icon}
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="flex min-w-0 items-center gap-2">
+                            <span className="font-mono text-[10px] tabular-nums text-ink-500/70">{s.index}</span>
+                            <span className={cn("min-w-0 truncate font-display text-sm font-medium", sActive ? "text-ink-900" : "text-ink-700")}>{s.title}</span>
+                          </span>
+                          <span className="mt-0.5 line-clamp-1 text-xs leading-snug text-ink-500">{s.description}</span>
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              <Link
+                href={menu.allHref}
+                onClick={onClose}
+                className="group mt-1 flex items-center justify-between rounded-xl border-t border-blue-100/70 px-3 py-2.5 font-display text-[11px] font-medium uppercase tracking-[0.14em] text-blue-600 transition-colors hover:text-orange-600"
+              >
+                {menu.allLabel}
+                <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={2} />
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

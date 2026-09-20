@@ -258,5 +258,85 @@
     "blur": "LTCf|y$O1eE$wejaoKoK65Nv=I$O",
     "w": 3626,
     "h": 2479
+  },
+  {
+    "file": "services/industrial-automation.jpg",
+    "id": "pWUyHVJgLhg",
+    "author": "Homa Appliances",
+    "desc": "Automated production machinery inside a bright factory hall",
+    "color": "#7373a6",
+    "blur": "LBDv?5^-Mcxu?HMwIAxtIv9E9Eoe",
+    "w": 6000,
+    "h": 4002
+  },
+  {
+    "file": "services/scada-remote-monitoring.jpg",
+    "id": "yhCHx8Mc-Kc",
+    "author": "ThisisEngineering",
+    "desc": "Engineer monitoring plant data on a control-room workstation",
+    "color": "#404040",
+    "blur": "LEBDyeI94m?v9Ze-s:Rk8wtl%gVs",
+    "w": 6678,
+    "h": 4452
+  },
+  {
+    "file": "services/plc-dcs-engineering.jpg",
+    "id": "NAchd3UmxXo",
+    "author": "Raymond Sime",
+    "desc": "Open industrial electrical control panel with wires and modules",
+    "color": "#c0c0c0",
+    "blur": "LGJRXHpd%M^+_NM{9FWBMxt7X9oM",
+    "w": 7008,
+    "h": 4672
+  },
+  {
+    "file": "services/automation-system-integration.jpg",
+    "id": "JRCkEOYLWXY",
+    "author": "Andy Sartori",
+    "desc": "Engineer operating a machine HMI touchscreen on the plant floor",
+    "color": "#262626",
+    "blur": "LDF5]U%i~UIVWB_2IV-:_2j[%Mae",
+    "w": 4180,
+    "h": 2907
+  },
+  {
+    "file": "industries/manufacturing-industrial.jpg",
+    "id": "GiuvVfcNFzY",
+    "author": "Mina Rad",
+    "desc": "Automated filling line conveyor in a bright production facility",
+    "color": "#d9d9d9",
+    "blur": "LNG]U3%g%Ln$?a-;%NkD01x[%L%M",
+    "w": 6000,
+    "h": 4000
+  },
+  {
+    "file": "home/hero-industrial-automation.jpg",
+    "id": "sz1CHL7Pky0",
+    "author": "Homa Appliances",
+    "desc": "Blue industrial robot arm on an automated production line in a bright factory",
+    "color": "#262640",
+    "blur": "LFEyu-tUxo?ZDhM{awRi0KROIUWC",
+    "w": 5585,
+    "h": 3502
+  },
+  {
+    "file": "home/hero-scada-monitoring.jpg",
+    "id": "_XDK4naBbgw",
+    "author": "Homa Appliances",
+    "desc": "HMI touchscreen panel on an automated press line in a bright factory",
+    "color": "#8c8cc0",
+    "blur": "L7C?{8E0wH9DRitUNGnzXWD#NH%M",
+    "w": 6000,
+    "h": 4002
+  },
+  {
+    "file": "home/hero-plc-integration.jpg",
+    "id": "ZPeXrWxOjRQ",
+    "author": "ThisisEngineering",
+    "desc": "Engineer commissioning an automated test rig from a laptop in a bright lab",
+    "color": "#c0d9d9",
+    "blur": "LUIrpetmD%NG%hWBj[t7~qRjWAoz",
+    "w": 7952,
+    "h": 5304
   }
 ]

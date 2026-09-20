@@ -193,7 +193,7 @@ export default function ServicesIndexPage() {
             </Reveal>
             <Reveal delay={0.06}>
               <h2 id="services-grid-title" className="font-display mt-4 text-3xl font-bold leading-tight text-ink-900 md:text-5xl">
-                Eight disciplines. One point of responsibility.
+                Twelve disciplines. One point of responsibility.
               </h2>
             </Reveal>
             <GoldRule />

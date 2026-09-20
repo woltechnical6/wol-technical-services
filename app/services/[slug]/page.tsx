@@ -74,6 +74,10 @@ const CONTACT_ENQUIRY: Partial<Record<Service["icon"], string>> = {
   electrical: "electrical-instrumentation",
   site: "site-support",
   support: "site-support",
+  automation: "automation",
+  scada: "automation",
+  plc: "automation",
+  integration: "automation",
 };
 
 function contactHref(service: Service) {

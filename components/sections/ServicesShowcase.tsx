@@ -7,7 +7,7 @@ import { TiltCard } from "@/components/motion/TiltCard";
 import { ServiceIcon } from "@/components/icons/ServiceIcon";
 
 /**
- * Services — all eight disciplines as tilting, gradient-edged cards in a
+ * Services — all twelve disciplines as tilting, gradient-edged cards in a
  * four-column grid, matching the services index page.
  */
 export function ServicesShowcase() {
@@ -25,7 +25,7 @@ export function ServicesShowcase() {
             </Reveal>
             <Reveal delay={0.06}>
               <h2 id="services-title" className="font-display mt-4 text-3xl font-bold leading-tight text-ink-900 md:text-4xl lg:text-[2.75rem]">
-                Eight disciplines. One point of responsibility.
+                Twelve disciplines. One point of responsibility.
               </h2>
             </Reveal>
             <span className="wol-shimmer mt-4 block h-0.75 w-14 rounded-full bg-linear-to-r from-amber-500 via-amber-300 to-amber-500 bg-size-[200%_100%]" />

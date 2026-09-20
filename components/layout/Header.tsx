@@ -17,13 +17,15 @@ import { nav, site } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/brand/Logo";
 import { MegaMenu } from "./MegaMenu";
+import { MEGA_MENUS, type MegaMenuKey } from "./megaMenus";
 import { MobileNav } from "./MobileNav";
 import { EASE_OUT_EXPO } from "@/lib/motion";
 
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
+  // Which dropdown (services / industries) is open, if any.
+  const [openMenu, setOpenMenu] = useState<MegaMenuKey | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { scrollY } = useScroll();
 
@@ -33,7 +35,7 @@ export function Header() {
   const [lastPath, setLastPath] = useState(pathname);
   if (pathname !== lastPath) {
     setLastPath(pathname);
-    setMegaOpen(false);
+    setOpenMenu(null);
     setMobileOpen(false);
   }
 
@@ -41,7 +43,7 @@ export function Header() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setMegaOpen(false);
+        setOpenMenu(null);
         setMobileOpen(false);
       }
     };
@@ -49,7 +51,7 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const solid = scrolled || megaOpen;
+  const solid = scrolled || openMenu !== null;
   // The header pill is always solid white, so nav text always stays dark —
   // no light/transparent variant to switch to over a photo hero anymore.
   const light = false;
@@ -76,7 +78,7 @@ export function Header() {
             the cursor from the pill down into the menu never closes it */}
         <div
           onMouseLeave={() => {
-            setMegaOpen(false);
+            setOpenMenu(null);
             setHoveredHref(null);
           }}
           className="relative mx-auto max-w-6xl"
@@ -126,30 +128,32 @@ export function Header() {
                 );
 
                 if (item.mega) {
+                  const menuKey = item.mega;
+                  const isOpen = openMenu === menuKey;
                   return (
                     <div
                       key={item.href}
                       className="relative"
                       onMouseEnter={() => {
-                        setMegaOpen(true);
+                        setOpenMenu(menuKey);
                         setHoveredHref(item.href);
                       }}
                     >
                       {pill}
                       <button
-                        aria-expanded={megaOpen}
+                        aria-expanded={isOpen}
                         aria-haspopup="true"
-                        onClick={() => setMegaOpen((o) => !o)}
+                        onClick={() => setOpenMenu((o) => (o === menuKey ? null : menuKey))}
                         className={cn(
                           "relative z-10 flex items-center gap-1.5 rounded-full px-4 py-2 font-display text-[13px] font-medium transition-colors",
-                          active || megaOpen ? navActive : navIdle,
+                          active || isOpen ? navActive : navIdle,
                         )}
                       >
                         {item.label}
                         <ChevronDown
                           className={cn(
                             "size-3.5 transition-all duration-300",
-                            megaOpen ? "rotate-180 text-orange-500" : "text-current",
+                            isOpen ? "rotate-180 text-orange-500" : "text-current",
                           )}
                           strokeWidth={1.75}
                         />
@@ -162,7 +166,7 @@ export function Header() {
                     key={item.href}
                     className="relative"
                     onMouseEnter={() => {
-                      setMegaOpen(false);
+                      setOpenMenu(null);
                       setHoveredHref(item.href);
                     }}
                   >
@@ -224,7 +228,7 @@ export function Header() {
           </div>
 
           <AnimatePresence>
-            {megaOpen && <MegaMenu onClose={() => setMegaOpen(false)} />}
+            {openMenu && <MegaMenu config={MEGA_MENUS[openMenu]} onClose={() => setOpenMenu(null)} />}
           </AnimatePresence>
         </div>
       </motion.header>

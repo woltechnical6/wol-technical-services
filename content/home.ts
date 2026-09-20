@@ -1,7 +1,7 @@
 import type { FaqItem, ProcessStep } from "./types";
 
 /**
- * Hero slideshow — exactly seven slides, shown one at a time. Each slide
+ * Hero slideshow — ten slides, shown one at a time. Each slide
  * pairs a photograph with wording written for that photograph and a link
  * to the discipline it illustrates.
  */
@@ -45,6 +45,17 @@ export const heroSlides: HeroSlide[] = [
     focal: "50% 55%",
   },
   {
+    id: "automation",
+    src: "/images/home/hero-industrial-automation.jpg",
+    alt: "Blue industrial robot arm on an automated production line in a bright factory",
+    label: "Industrial automation",
+    tag: "Automation · Robotics · Line control",
+    headline: ["Lines that run", "themselves, safely."],
+    sub: "Control system design, robotic cell integration and line automation engineered off-line, tested in the workshop and commissioned around production hours.",
+    cta: { label: "Industrial automation", href: "/services/industrial-automation" },
+    focal: "40% 50%",
+  },
+  {
     id: "piping",
     src: "/images/home/hero5.png",
     alt: "Process unit with insulated piping, columns and access platforms under a clear sky",
@@ -67,6 +78,17 @@ export const heroSlides: HeroSlide[] = [
     focal: "50% 50%",
   },
   {
+    id: "scada",
+    src: "/images/home/hero-scada-monitoring.jpg",
+    alt: "HMI touchscreen panel on an automated press line in a bright factory",
+    label: "SCADA & remote monitoring",
+    tag: "SCADA · HMI · Remote monitoring",
+    headline: ["Every machine", "on one screen."],
+    sub: "SCADA and HMI systems that give operators one supervisory view of the plant — alarms, trends and reports available on site or remotely.",
+    cta: { label: "SCADA & remote monitoring", href: "/services/scada-remote-monitoring" },
+    focal: "35% 55%",
+  },
+  {
     id: "welding",
     src: "/images/home/hero7.png",
     alt: "Welder in a protective mask TIG welding a steel frame",
@@ -87,6 +109,17 @@ export const heroSlides: HeroSlide[] = [
     sub: "Cabling, terminations, instrument installation and loop checks completed to drawing and handed over with the test records to prove it.",
     cta: { label: "Electrical & instrumentation", href: "/services/electrical-instrumentation" },
     focal: "50% 50%",
+  },
+  {
+    id: "plc",
+    src: "/images/home/hero-plc-integration.jpg",
+    alt: "Engineer commissioning an automated test rig from a laptop in a bright lab",
+    label: "PLC, DCS & integration",
+    tag: "PLC · DCS · System integration",
+    headline: ["Programmed, tested", "and commissioned."],
+    sub: "PLC and DCS logic written to the functional design, tested against the I/O list and commissioned on site with the documentation handed over.",
+    cta: { label: "PLC & DCS engineering", href: "/services/plc-dcs-engineering" },
+    focal: "55% 50%",
   },
   {
     id: "site",
@@ -116,6 +149,10 @@ export const capabilityStrip = [
   "Industrial Maintenance",
   "Technical Support",
   "Project & Site Services",
+  "Industrial Automation",
+  "SCADA & Monitoring",
+  "PLC & DCS",
+  "System Integration",
   "Dubai · UAE",
 ];
 
@@ -127,7 +164,7 @@ export const about = {
     "Our approach is simple: understand the asset, plan the work properly, execute it under control and hand it back with the records to prove it.",
   ],
   indicators: [
-    { label: "Disciplines", value: "05", note: "Mechanical · Piping · Welding · E&I · Maintenance" },
+    { label: "Disciplines", value: "06", note: "Mechanical · Piping · Welding · E&I · Automation · Maintenance" },
     { label: "Base", value: "DXB", note: "Dubai, United Arab Emirates" },
     { label: "Delivery", value: "Site + Shop", note: "On-site crews and workshop fabrication" },
   ],

@@ -324,7 +324,7 @@ export default function FaqsPage() {
             <GoldRule center />
             <Reveal delay={0.12}>
               <p className="mt-6 text-base leading-relaxed text-white/70 md:text-lg">
-                The most common questions for each of our eight services, with a link to the full service page.
+                The most common questions for each of our twelve services, with a link to the full service page.
               </p>
             </Reveal>
           </div>

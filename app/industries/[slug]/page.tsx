@@ -449,7 +449,7 @@ export default async function IndustryPage({ params }: { params: Params }) {
             </Reveal>
           </div>
 
-          <RevealGroup className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5" step={0.07}>
+          <RevealGroup className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" step={0.07}>
             {others.map((o) => (
               <RevealItem key={o.slug} className="h-full">
                 <TiltCard
@@ -463,7 +463,7 @@ export default async function IndustryPage({ params }: { params: Params }) {
                         src={o.image.src}
                         alt={o.image.alt}
                         fill
-                        sizes="(min-width:1024px) 18vw, (min-width:640px) 45vw, 100vw"
+                        sizes="(min-width:1024px) 30vw, (min-width:640px) 45vw, 100vw"
                         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                         style={{ objectPosition: o.image.focal }}
                       />
@@ -492,7 +492,7 @@ export default async function IndustryPage({ params }: { params: Params }) {
       {/* 06 · FAQ                                                          */}
       {/* ---------------------------------------------------------------- */}
       <FAQSection
-        items={faq.slice(0, 4)}
+        items={ind.faq ?? faq.slice(0, 4)}
         index="06"
         title={`Working with WOL in ${ind.title.toLowerCase()}.`}
         lede="Straight answers on how work in this sector is scoped, mobilised and handed over."

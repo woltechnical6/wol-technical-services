@@ -80,6 +80,51 @@ const paths: Record<ServiceIconKey, React.ReactNode> = {
       <path d="M10 10h6M28 10h2" />
     </>
   ),
+  // articulated robot arm over a conveyor
+  automation: (
+    <>
+      <path d="M6 33h28" />
+      <path d="M9 33v-3h8v3M11 30l4-12" />
+      <path d="M15 18l10-6" />
+      <circle cx="15" cy="18" r="2" />
+      <circle cx="25" cy="12" r="2" />
+      <path d="M27 12h4v4M29 16v4M27 20h4" />
+      <path d="M21 28h10" strokeDasharray="1.5 2.5" />
+    </>
+  ),
+  // monitor with trend line and a remote signal
+  scada: (
+    <>
+      <rect x="5" y="8" width="24" height="17" rx="1.5" />
+      <path d="M9 20l4-5 3 3 4-7 3 4" />
+      <path d="M13 31h8M17 25v6" />
+      <path d="M31 10a4 4 0 0 1 0 6M34 7a8 8 0 0 1 0 12" strokeLinecap="round" />
+    </>
+  ),
+  // DIN-rail controller with I/O terminals
+  plc: (
+    <>
+      <rect x="6" y="10" width="28" height="20" rx="1.5" />
+      <path d="M6 16h28M6 24h28" />
+      <path d="M10 10v6M14 10v6M18 10v6M22 10v6M26 10v6M30 10v6" />
+      <path d="M10 24v6M14 24v6M18 24v6M22 24v6M26 24v6M30 24v6" />
+      <circle cx="12" cy="20" r="1.2" fill="currentColor" stroke="none" />
+      <circle cx="16" cy="20" r="1.2" fill="currentColor" stroke="none" />
+      <path d="M22 20h8" />
+    </>
+  ),
+  // linked nodes converging on a central hub
+  integration: (
+    <>
+      <circle cx="20" cy="20" r="4" />
+      <circle cx="8" cy="9" r="2.5" />
+      <circle cx="32" cy="9" r="2.5" />
+      <circle cx="8" cy="31" r="2.5" />
+      <circle cx="32" cy="31" r="2.5" />
+      <path d="M10 11l7 6M30 11l-7 6M10 29l7-6M30 29l-7-6" />
+      <path d="M20 5v3M20 32v3" strokeDasharray="1.5 2" />
+    </>
+  ),
 };
 
 export function ServiceIcon({ name, className }: { name: ServiceIconKey; className?: string }) {

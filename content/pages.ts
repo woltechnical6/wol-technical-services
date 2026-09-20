@@ -10,7 +10,7 @@ export const aboutPage = {
   hero: {
     eyebrow: "About WOL",
     title: ["Built for the", "way plants work."],
-    lede: "WOL Technical Services is a Dubai-based technical services company supporting oil & gas and industrial facilities across mechanical, piping, welding, electrical and maintenance disciplines.",
+    lede: "WOL Technical Services is a Dubai-based technical services company supporting oil & gas and industrial facilities across mechanical, piping, welding, electrical, automation and maintenance disciplines.",
     image: { src: "/images/pages/about.jpg", alt: "Dubai skyline at night with illuminated towers", focal: "50% 60%" } satisfies ImageAsset,
   },
   statement: {
@@ -40,6 +40,7 @@ export const aboutPage = {
     { code: "WELD", title: "Welding", body: "Procedure-based welding, structural and pressure-retaining work." },
     { code: "E&I", title: "Electrical & Instrumentation", body: "Installation, termination, loop checks and calibration support." },
     { code: "MAINT", title: "Maintenance", body: "Planned, corrective and shutdown maintenance for industrial plants." },
+    { code: "AUTO", title: "Automation & Control", body: "PLC, DCS and SCADA engineering, system integration and remote monitoring." },
   ],
   certifications: {
     note: "Certifications, accreditations and client approvals will be listed here once confirmed by WOL Technical Services.",
@@ -50,8 +51,8 @@ export const aboutPage = {
 export const servicesPage = {
   hero: {
     eyebrow: "Services",
-    title: ["Eight disciplines,", "one method."],
-    lede: "Proposed service categories covering the mechanical, piping, welding, electrical and maintenance needs of oil & gas and industrial facilities. Each is delivered with the same survey–plan–execute–verify discipline.",
+    title: ["Twelve disciplines,", "one method."],
+    lede: "Proposed service categories covering the mechanical, piping, welding, electrical, automation and maintenance needs of oil & gas and industrial facilities. Each is delivered with the same survey–plan–execute–verify discipline.",
     image: { src: "/images/pages/services-index.jpg", alt: "Industrial valves and pipework inside a process plant", focal: "50% 50%" } satisfies ImageAsset,
   },
 };

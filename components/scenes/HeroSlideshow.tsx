@@ -15,7 +15,7 @@ const COUNT = heroSlides.length;
 const HOLD_MS = hero.interval * 1000;
 
 /**
- * Hero slideshow — seven full-bleed photographs, one at a time, each held
+ * Hero slideshow — ten full-bleed photographs, one at a time, each held
  * for `hero.interval` seconds. The active photograph swings in on the y-axis behind a
  * dark wash and drifts with the pointer; the copy over it is written for
  * that photograph. Only a hidden tab pauses the cycle.
